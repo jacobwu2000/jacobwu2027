@@ -39,6 +39,118 @@ Hi! My name is Jacob B Wu
 
 
 <div style="display: flex; flex-wrap: wrap; gap: 10px;">
+    <!-- Unit 1: Lessons 1.1 to 1.15 -->
+    <a href="{{site.baseurl}}/csalessons/lesson1-1" style="text-decoration: none;">
+        <div style="background-color: var(--green); color: black; padding: 10px 20px; border-radius: 5px; font-weight: bold; transition: transform 0.2s, box-shadow 0.2s;">
+            1.1
+        </div>
+    </a>
+    <a href="{{site.baseurl}}/csalessons/lesson1-2" style="text-decoration: none;">
+        <div style="background-color: var(--orange); color: black; padding: 10px 20px; border-radius: 5px; font-weight: bold; transition: transform 0.2s, box-shadow 0.2s;">
+            1.2
+        </div>
+    </a>
+    <a href="{{site.baseurl}}/csalessons/lesson1-3" style="text-decoration: none;">
+        <div style="background-color: var(--green); color: black; padding: 10px 20px; border-radius: 5px; font-weight: bold; transition: transform 0.2s, box-shadow 0.2s;">
+            1.3
+        </div>
+    </a>
+    <a href="{{site.baseurl}}/csalessons/lesson1-4" style="text-decoration: none;">
+        <div style="background-color: var(--orange); color: black; padding: 10px 20px; border-radius: 5px; font-weight: bold; transition: transform 0.2s, box-shadow 0.2s;">
+            1.4
+        </div>
+    </a>
+    <a href="{{site.baseurl}}/csalessons/lesson1-5" style="text-decoration: none;">
+        <div style="background-color: var(--green); color: black; padding: 10px 20px; border-radius: 5px; font-weight: bold; transition: transform 0.2s, box-shadow 0.2s;">
+            1.5
+        </div>
+    </a>
+    <a href="{{site.baseurl}}/csalessons/lesson1-6" style="text-decoration: none;">
+        <div style="background-color: var(--orange); color: black; padding: 10px 20px; border-radius: 5px; font-weight: bold; transition: transform 0.2s, box-shadow 0.2s;">
+            1.6
+        </div>
+    </a>
+    <a href="{{site.baseurl}}/csalessons/lesson1-7" style="text-decoration: none;">
+        <div style="background-color: var(--green); color: black; padding: 10px 20px; border-radius: 5px; font-weight: bold; transition: transform 0.2s, box-shadow 0.2s;">
+            1.7
+        </div>
+    </a>
+    <a href="{{site.baseurl}}/csalessons/lesson1-8" style="text-decoration: none;">
+        <div style="background-color: var(--orange); color: black; padding: 10px 20px; border-radius: 5px; font-weight: bold; transition: transform 0.2s, box-shadow 0.2s;">
+            1.8
+        </div>
+    </a>
+    <a href="{{site.baseurl}}/csalessons/lesson1-9" style="text-decoration: none;">
+        <div style="background-color: var(--green); color: black; padding: 10px 20px; border-radius: 5px; font-weight: bold; transition: transform 0.2s, box-shadow 0.2s;">
+            1.9
+        </div>
+    </a>
+    <a href="{{site.baseurl}}/csalessons/lesson1-10" style="text-decoration: none;">
+        <div style="background-color: var(--orange); color: black; padding: 10px 20px; border-radius: 5px; font-weight: bold; transition: transform 0.2s, box-shadow 0.2s;">
+            1.10
+        </div>
+    </a>
+    <a href="{{site.baseurl}}/csalessons/lesson1-11" style="text-decoration: none;">
+        <div style="background-color: var(--green); color: black; padding: 10px 20px; border-radius: 5px; font-weight: bold; transition: transform 0.2s, box-shadow 0.2s;">
+            1.11
+        </div>
+    </a>
+    <a href="{{site.baseurl}}/csalessons/lesson1-12" style="text-decoration: none;">
+        <div style="background-color: var(--orange); color: black; padding: 10px 20px; border-radius: 5px; font-weight: bold; transition: transform 0.2s, box-shadow 0.2s;">
+            1.12
+        </div>
+    </a>
+    <a href="{{site.baseurl}}/csalessons/lesson1-13" style="text-decoration: none;">
+        <div style="background-color: var(--green); color: black; padding: 10px 20px; border-radius: 5px; font-weight: bold; transition: transform 0.2s, box-shadow 0.2s;">
+            1.13
+        </div>
+    </a>
+    <a href="{{site.baseurl}}/csalessons/lesson1-14" style="text-decoration: none;">
+        <div style="background-color: var(--orange); color: black; padding: 10px 20px; border-radius: 5px; font-weight: bold; transition: transform 0.2s, box-shadow 0.2s;">
+            1.14
+        </div>
+    </a>
+    <a href="{{site.baseurl}}/csalessons/lesson1-15" style="text-decoration: none;">
+        <div style="background-color: var(--green); color: black; padding: 10px 20px; border-radius: 5px; font-weight: bold; transition: transform 0.2s, box-shadow 0.2s;">
+            1.15
+        </div>
+    </a>
+    <!-- Unit 2: Lessons 2.1 to 2.7 -->
+    <a href="{{site.baseurl}}/csalessons/lesson2-1" style="text-decoration: none;">
+        <div style="background-color: var(--blue); color: black; padding: 10px 20px; border-radius: 5px; font-weight: bold; transition: transform 0.2s, box-shadow 0.2s;">
+            2.1
+        </div>
+    </a>
+    <a href="{{site.baseurl}}/csalessons/lesson2-2" style="text-decoration: none;">
+        <div style="background-color: var(--green); color: black; padding: 10px 20px; border-radius: 5px; font-weight: bold; transition: transform 0.2s, box-shadow 0.2s;">
+            2.2
+        </div>
+    </a>
+    <a href="{{site.baseurl}}/csalessons/lesson2-3" style="text-decoration: none;">
+        <div style="background-color: var(--blue); color: black; padding: 10px 20px; border-radius: 5px; font-weight: bold; transition: transform 0.2s, box-shadow 0.2s;">
+            2.3
+        </div>
+    </a>
+    <a href="{{site.baseurl}}/csalessons/lesson2-4" style="text-decoration: none;">
+        <div style="background-color: var(--green); color: black; padding: 10px 20px; border-radius: 5px; font-weight: bold; transition: transform 0.2s, box-shadow 0.2s;">
+            2.4
+        </div>
+    </a>
+    <a href="{{site.baseurl}}/csalessons/lesson2-5" style="text-decoration: none;">
+        <div style="background-color: var(--blue); color: black; padding: 10px 20px; border-radius: 5px; font-weight: bold; transition: transform 0.2s, box-shadow 0.2s;">
+            2.5
+        </div>
+    </a>
+    <a href="{{site.baseurl}}/csalessons/lesson2-6" style="text-decoration: none;">
+        <div style="background-color: var(--green); color: black; padding: 10px 20px; border-radius: 5px; font-weight: bold; transition: transform 0.2s, box-shadow 0.2s;">
+            2.6
+        </div>
+    </a>
+    <a href="{{site.baseurl}}/csalessons/lesson2-7" style="text-decoration: none;">
+        <div style="background-color: var(--blue); color: black; padding: 10px 20px; border-radius: 5px; font-weight: bold; transition: transform 0.2s, box-shadow 0.2s;">
+            2.7
+        </div>
+    </a>
     <a href="{{site.baseurl}}/csalessons/lesson2-8" style="text-decoration: none;">
         <div style="background-color: var(--green); color: black; padding: 10px 20px; border-radius: 5px; font-weight: bold; transition: transform 0.2s, box-shadow 0.2s;">
            2.8
