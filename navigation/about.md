@@ -5,7 +5,7 @@ permalink: /about/
 comments: true
 ---
 
-## As a conversation Starter
+<!-- ## As a conversation Starter
 
 Here are some places I have lived.
 
@@ -46,14 +46,13 @@ Flags are made using Wikipedia images
         object-fit: cover;
         border-radius: 5px;
     }
-</style>
+</style> -->
 
 <!-- This grid_container class is used by CSS styling and the id is used by JavaScript connection -->
-<div class="grid-container" id="grid_container">
+<!-- <div class="grid-container" id="grid_container">
     <!-- content will be added here by JavaScript -->
-</div>
 
-<script>
+<!-- <script>
     // 1. Make a connection to the HTML container defined in the HTML div
     var container = document.getElementById("grid_container"); // This container connects to the HTML div
 
@@ -95,7 +94,7 @@ Flags are made using Wikipedia images
         // Append the grid item DIV to the container DIV
         container.appendChild(gridItem);
     }
-</script>
+</script> -->
 
 ### Journey through Life
 
@@ -115,16 +114,7 @@ Everything for me, as for many others, revolves around family.
 Gallery of Pics, scroll to the right for more ...
 </comment>
 <div class="image-gallery">
-  <img src="{{site.baseurl}}/images/about/missionary.jpg" alt="Image 1">
-  <img src="{{site.baseurl}}/images/about/john_tamara.jpg" alt="Image 2">
-  <img src="{{site.baseurl}}/images/about/tamara_fam.jpg" alt="Image 3">
-  <img src="{{site.baseurl}}/images/about/surf.jpg" alt="Image 4">
-  <img src="{{site.baseurl}}/images/about/john_lora.jpg" alt="Image 5">
-  <img src="{{site.baseurl}}/images/about/lora_fam.jpg" alt="Image 6">
-  <img src="{{site.baseurl}}/images/about/lora_fam2.jpg" alt="Image 7">
-  <img src="{{site.baseurl}}/images/about/pj_party.jpg" alt="Image 8">
-  <img src="{{site.baseurl}}/images/about/trent_family.png" alt="Image 9">
-  <img src="{{site.baseurl}}/images/about/claire.jpg" alt="Image 10">
-  <img src="{{site.baseurl}}/images/about/grandkids.jpg" alt="Image 11">
-  <img src="{{site.baseurl}}/images/about/farm.jpg" alt="Image 12">
+  <img src="https://upload.wikimedia.org/wikipedia/commons/1/15/Sandiego_skyline_at_night.JPG" alt="San Diego">
+  <img src="https://upload.wikimedia.org/wikipedia/commons/3/31/Minneapolis_Skyline_looking_south.jpg" alt="Minneapolis">
+  <img src="https://upload.wikimedia.org/wikipedia/commons/2/23/The_Great_Wall_of_China_at_Jinshanling-edit.jpg" alt="China">
 </div>

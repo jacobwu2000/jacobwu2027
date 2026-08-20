@@ -33,6 +33,36 @@ Hi! My name is Jacob B Wu
 
 <br>
 
+### CSA Lessons
+
+> Lessons
+
+
+<div style="display: flex; flex-wrap: wrap; gap: 10px;">
+    <a href="{{site.baseurl}}/csalessons/lesson2-8" style="text-decoration: none;">
+        <div style="background-color: var(--green); color: black; padding: 10px 20px; border-radius: 5px; font-weight: bold; transition: transform 0.2s, box-shadow 0.2s;">
+           2.8
+        </div>
+    </a>
+    <a href="{{site.baseurl}}/csalessons/lesson2-9" style="text-decoration: none;">
+        <div style="background-color: var(--blue); color: white; padding: 10px 20px; border-radius: 5px; font-weight: bold; transition: transform 0.2s, box-shadow 0.2s;">
+           2.9
+        </div>
+    </a>
+    <a href="{{site.baseurl}}/csalessons/lesson2-10" style="text-decoration: none;">
+        <div style="background-color: var(--warn); color: black; padding: 10px 20px; border-radius: 5px; font-weight: bold; transition: transform 0.2s, box-shadow 0.2s;">
+           2.10
+        </div>
+    </a>
+    <a href="{{site.baseurl}}/csalessons/coderunner" style="text-decoration: none;">
+        <div style="background-color: var(--orange); color: white; padding: 10px 20px; border-radius: 5px; font-weight: bold; transition: transform 0.2s, box-shadow 0.2s;">
+           Coderunner
+        </div>
+    </a>
+</div>
+
+<br>
+
 ### My Lessons
 
 > Foundations in Tech are essential, click to see some of my lesson creations.
