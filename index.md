@@ -166,6 +166,11 @@ Hi! My name is Jacob B Wu
            2.10
         </div>
     </a>
+    <a href="{{site.baseurl}}/csalessons/lesson3-9" style="text-decoration: none;">
+        <div style="background-color: var(--blue); color: white; padding: 10px 20px; border-radius: 5px; font-weight: bold; transition: transform 0.2s, box-shadow 0.2s;">
+           3.9
+        </div>
+    </a>
     <a href="{{site.baseurl}}/csalessons/coderunner" style="text-decoration: none;">
         <div style="background-color: var(--orange); color: white; padding: 10px 20px; border-radius: 5px; font-weight: bold; transition: transform 0.2s, box-shadow 0.2s;">
            Coderunner
