@@ -1,0 +1,433 @@
+---
+layout: post
+title: Self-Assessment
+description: Self-Assessment v2 prototype — Likert survey plus 2 Pros / 1 Grow for the OCS submission box
+permalink: /sprint2/self-assessment
+---
+
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=IBM+Plex+Mono:wght@400;500;600;700&display=swap">
+<style>
+/* Scoped to .sa-root so the prototype's styles don't leak into the site theme. */
+.sa-root {
+  --bg: #1f2123;
+  --surface: #17181a;
+  --field: #111213;
+  --btn: #000000;
+  --line: #34373b;
+  --ink: #e8e9ea;
+  --muted: #a3a8ae;
+  --accent: #6cb4ee;
+  --accent-ink: #0b1620;
+  --pro: #7ccf9a;
+  --grow: #e9b45c;
+  --error: #f08a7e;
+  --mono: "IBM Plex Mono", ui-monospace, "SFMono-Regular", Menlo, Consolas, monospace;
+  color-scheme: dark;
+  background: var(--bg); color: var(--ink);
+  font-family: var(--mono); font-size: 14px; line-height: 1.6;
+  padding: 28px 16px 64px; border-radius: 10px;
+}
+.sa-root * { box-sizing: border-box; }
+.sa-root h1, .sa-root h2, .sa-root h3 { text-wrap: balance; margin: 0; line-height: 1.25; color: var(--ink); border: 0; }
+.sa-root p { margin: 0; }
+
+.sa-root .wrap { max-width: 1120px; margin: 0 auto; display: grid; gap: 28px; }
+.sa-root .page-head { display: grid; gap: 8px; max-width: 72ch; }
+.sa-root .eyebrow { font-size: 11px; letter-spacing: 0.12em; text-transform: uppercase; color: var(--muted); }
+.sa-root .page-head h1 { font-size: 24px; font-weight: 600; }
+.sa-root .page-head p { color: var(--muted); }
+
+.sa-root .layout { display: grid; grid-template-columns: minmax(0, 1fr) 320px; gap: 28px; align-items: start; }
+@media (max-width: 900px) { .sa-root .layout { grid-template-columns: minmax(0, 1fr); } }
+
+/* ---------- Prototype form ---------- */
+.sa-root .box { background: var(--surface); border: 1px solid var(--line); border-radius: 10px; padding: 22px; display: grid; gap: 22px; min-width: 0; }
+.sa-root .box-head { display: grid; gap: 6px; }
+.sa-root .box-head h2 { font-size: 20px; font-weight: 600; display: flex; align-items: center; gap: 10px; }
+.sa-root .box-head p { color: var(--muted); }
+
+.sa-root .scale-toggle { display: flex; flex-wrap: wrap; align-items: center; gap: 8px; font-size: 12px; color: var(--muted); }
+.sa-root .scale-toggle button {
+  font: inherit; color: var(--ink); background: transparent; border: 1px solid var(--line);
+  border-radius: 999px; padding: 3px 12px; cursor: pointer;
+}
+.sa-root .scale-toggle button[aria-pressed="true"] { background: var(--accent); border-color: var(--accent); color: var(--accent-ink); }
+
+.sa-root .progress { display: flex; flex-wrap: wrap; gap: 8px; }
+.sa-root .chip { font-size: 12px; border: 1px solid var(--line); border-radius: 999px; padding: 2px 10px; color: var(--muted); font-variant-numeric: tabular-nums; }
+.sa-root .chip.done { border-color: var(--pro); color: var(--pro); }
+
+.sa-root .section-label { font-size: 11px; letter-spacing: 0.12em; text-transform: uppercase; color: var(--muted); display: flex; align-items: center; gap: 8px; }
+
+.sa-root fieldset { border: 0; margin: 0; padding: 0; min-width: 0; display: grid; gap: 10px; }
+.sa-root legend { padding: 0; display: grid; gap: 4px; margin-bottom: 10px; }
+.sa-root .cat { font-weight: 700; font-size: 15px; }
+.sa-root .stmt { color: var(--ink); opacity: 0.9; }
+
+.sa-root .likert { display: grid; grid-template-columns: repeat(5, minmax(0, 1fr)); gap: 6px; }
+.sa-root .likert label { display: grid; justify-items: center; gap: 6px; cursor: pointer; text-align: center; }
+.sa-root .likert input { position: absolute; opacity: 0; width: 1px; height: 1px; }
+.sa-root .likert .num {
+  width: 100%; max-width: 64px; height: 44px; display: grid; place-items: center;
+  background: var(--btn); color: #fff; border: 1px solid var(--line); border-radius: 6px; font-weight: 600;
+}
+.sa-root .likert .lbl { font-size: 11px; line-height: 1.3; color: var(--muted); }
+.sa-root .likert input:checked + .num { background: var(--accent); border-color: var(--accent); color: var(--accent-ink); }
+.sa-root .likert input:checked ~ .lbl { color: var(--ink); }
+.sa-root .likert input:focus-visible + .num { outline: 2px solid var(--accent); outline-offset: 2px; }
+
+.sa-root .qual { display: grid; gap: 14px; }
+.sa-root .qcard { border: 1px solid var(--line); border-radius: 8px; padding: 14px; display: grid; gap: 8px; background: var(--bg); }
+.sa-root .qcard.pro { border-left: 3px solid var(--pro); }
+.sa-root .qcard.grow { border-left: 3px solid var(--grow); }
+.sa-root .qhead { display: flex; flex-wrap: wrap; justify-content: space-between; gap: 6px 12px; align-items: baseline; }
+.sa-root .qtitle { font-weight: 700; }
+.sa-root .pro .qtitle { color: var(--pro); }
+.sa-root .grow .qtitle { color: var(--grow); }
+.sa-root .qprompt { color: var(--muted); font-size: 13px; }
+.sa-root textarea {
+  width: 100%; min-height: 76px; resize: vertical; font: inherit; color: var(--ink);
+  background: var(--field); border: 1px solid var(--line); border-radius: 6px; padding: 10px 12px;
+}
+.sa-root textarea:focus-visible, .sa-root select:focus-visible, .sa-root input[type="url"]:focus-visible { outline: 2px solid var(--accent); outline-offset: 1px; }
+.sa-root .qfoot { display: flex; flex-wrap: wrap; justify-content: space-between; gap: 8px; align-items: center; font-size: 12px; color: var(--muted); }
+.sa-root .qfoot select { font: inherit; font-size: 12px; color: var(--ink); background: var(--field); border: 1px solid var(--line); border-radius: 6px; padding: 3px 6px; }
+.sa-root .count { font-variant-numeric: tabular-nums; }
+.sa-root .count.ok { color: var(--pro); }
+
+.sa-root .err { color: var(--error); font-size: 12px; }
+.sa-root .has-error .num, .sa-root .has-error textarea { border-color: var(--error); }
+
+.sa-root .lock-note { font-size: 12px; color: var(--muted); border-top: 1px dashed var(--line); padding-top: 12px; }
+
+.sa-root .existing { display: grid; gap: 12px; border-top: 1px solid var(--line); padding-top: 18px; }
+.sa-root .tabs { display: flex; gap: 8px; flex-wrap: wrap; }
+.sa-root .tab { font: inherit; padding: 8px 14px; border-radius: 6px; border: 1px solid var(--line); background: var(--btn); color: #fff; cursor: default; }
+.sa-root .tab.active { border-color: var(--ink); }
+.sa-root .existing input[type="url"] { width: 100%; font: inherit; color: var(--ink); background: var(--field); border: 1px solid var(--line); border-radius: 6px; padding: 9px 12px; }
+.sa-root .submit { justify-self: start; font: inherit; font-weight: 600; padding: 10px 20px; border-radius: 6px; border: 0; background: var(--accent); color: var(--accent-ink); cursor: pointer; }
+.sa-root .submit:focus-visible { outline: 2px solid var(--ink); outline-offset: 2px; }
+.sa-root .tag-existing { font-size: 11px; color: var(--muted); }
+
+.sa-root .result { border: 1px solid var(--line); border-radius: 8px; padding: 14px; display: grid; gap: 8px; }
+.sa-root .result.bad { border-color: var(--error); }
+.sa-root .result.good { border-color: var(--pro); }
+.sa-root .result pre { margin: 0; overflow-x: auto; font-size: 12px; background: var(--field); color: var(--ink); border-radius: 6px; padding: 10px; }
+
+.sa-root .mark {
+  display: inline-grid; place-items: center; width: 20px; height: 20px; border-radius: 50%;
+  font-size: 11px; font-weight: 700; background: var(--accent); color: var(--accent-ink); flex: none;
+}
+
+/* ---------- Notes column ---------- */
+.sa-root .notes { display: grid; gap: 14px; position: sticky; top: 16px; }
+@media (max-width: 900px) { .sa-root .notes { position: static; } }
+.sa-root .notes h2 { font-size: 15px; font-weight: 600; }
+.sa-root .note { display: grid; grid-template-columns: 20px minmax(0, 1fr); gap: 10px; font-size: 13px; }
+.sa-root .note b { display: block; }
+.sa-root .note p { color: var(--muted); }
+.sa-root .note .area { font-size: 10px; letter-spacing: 0.1em; text-transform: uppercase; color: var(--accent); }
+
+/* ---------- Questions ---------- */
+.sa-root .questions { display: grid; gap: 18px; border-top: 1px solid var(--line); padding-top: 24px; }
+.sa-root .questions > h2 { font-size: 20px; font-weight: 600; }
+.sa-root .questions > p { color: var(--muted); max-width: 72ch; }
+.sa-root .qgroups { display: grid; grid-template-columns: repeat(3, minmax(0, 1fr)); gap: 20px; }
+@media (max-width: 900px) { .sa-root .qgroups { grid-template-columns: minmax(0, 1fr); } }
+.sa-root .qgroup { display: grid; gap: 10px; align-content: start; }
+.sa-root .qgroup h3 { font-size: 12px; letter-spacing: 0.12em; text-transform: uppercase; color: var(--accent); }
+.sa-root .qgroup ol { margin: 0; padding-left: 20px; display: grid; gap: 12px; }
+.sa-root .qgroup li p { color: var(--muted); font-size: 13px; margin-top: 2px; }
+
+@media (prefers-reduced-motion: no-preference) {
+  .sa-root .likert .num, .sa-root .chip { transition: background-color .12s, border-color .12s, color .12s; }
+}
+</style>
+
+<div class="sa-root">
+<div class="wrap">
+  <header class="page-head">
+    <span class="eyebrow">Prototype · submission box · not connected to the backend</span>
+    <h1>Self-Assessment v2</h1>
+    <p>A Likert survey plus 2 Pros / 1 Grow, placed above the existing Link Submission and File Upload tabs. Numbered markers match the design notes on the right. Click Submit to see the validation and the data the backend would receive.</p>
+  </header>
+
+  <div class="layout">
+    <form class="box" id="sa-form" novalidate>
+      <div class="box-head">
+        <h2>Self-Assessment</h2>
+        <p>Rate each statement, then name two things that went well and one thing to improve. Everything here is required before you submit.</p>
+      </div>
+
+      <div class="scale-toggle" role="group" aria-label="Compare scale wording">
+        <span class="mark" aria-hidden="true">1</span>
+        <span>Compare scales:</span>
+        <button type="button" id="scale-agree" aria-pressed="true">Agreement</button>
+        <button type="button" id="scale-rubric" aria-pressed="false">Rubric levels (current)</button>
+      </div>
+
+      <div class="progress" aria-live="polite">
+        <span class="mark" aria-hidden="true">5</span>
+        <span class="chip" id="chip-ratings">Ratings 0/4</span>
+        <span class="chip" id="chip-pros">Pros 0/2</span>
+        <span class="chip" id="chip-grow">Grow 0/1</span>
+      </div>
+
+      <div class="section-label"><span class="mark" aria-hidden="true">2</span>Ratings</div>
+      <div id="likert-items" style="display:grid;gap:22px"></div>
+
+      <div class="section-label"><span class="mark" aria-hidden="true">3</span>2 Pros, 1 Grow</div>
+      <div class="qual" id="qual-items"></div>
+
+      <p class="lock-note"><span class="mark" aria-hidden="true">6</span> You can edit your self-assessment until your teacher grades this assignment.</p>
+
+      <div class="existing">
+        <span class="tag-existing">Existing submission controls (unchanged)</span>
+        <div class="tabs">
+          <span class="tab active">Link Submission</span>
+          <span class="tab">File Upload</span>
+        </div>
+        <input type="url" id="sub-link" placeholder="https://github.com/you/repo" value="https://github.com/example-student/frq-practice" aria-label="Submission link">
+        <button class="submit" type="submit">Submit Assignment</button>
+      </div>
+
+      <div id="result" hidden></div>
+    </form>
+
+    <aside class="notes" aria-label="Design notes">
+      <h2>Design notes</h2>
+      <div class="note"><span class="mark">1</span><div><span class="area">Design</span><b>One scale, every point labeled</b><p>The current form mixes two scales (Explore→Create and Beginning→Model). A Likert survey normally uses one agreement scale. Use the toggle to compare both.</p></div></div>
+      <div class="note"><span class="mark">2</span><div><span class="area">Design</span><b>Statements written as "I…"</b><p>An agreement scale only reads naturally against a statement. The 4 categories and their meaning stay the same.</p></div></div>
+      <div class="note"><span class="mark">3</span><div><span class="area">Design · Coding</span><b>2 Pros / 1 Grow replace the reflection box</b><p>Three separate fields instead of one. Each needs 20–500 characters, enforced in the browser and again on the server.</p></div></div>
+      <div class="note"><span class="mark">4</span><div><span class="area">Design</span><b>Optional "Related to" tag</b><p>Links each Pro or Grow to one of the 4 categories, so teachers can see why a student rated themselves that way.</p></div></div>
+      <div class="note"><span class="mark">5</span><div><span class="area">Design</span><b>Progress chips</b><p>Show what's left before Submit works, instead of a single error after the click.</p></div></div>
+      <div class="note"><span class="mark">6</span><div><span class="area">Security</span><b>Locked after grading</b><p>Prevents changing a self-assessment after seeing the grade. Edits before grading are kept in history.</p></div></div>
+      <div class="note"><span class="mark">7</span><div><span class="area">Security · Coding</span><b>No identity in the payload</b><p>The request has no user id or score. The server takes the student from the login session and shows every text field as plain text in the teacher view.</p></div></div>
+    </aside>
+  </div>
+
+  <section class="questions" aria-labelledby="q-title">
+    <h2 id="q-title">Questions for the project manager</h2>
+    <p>The answers change what gets built, so these come before coding. They're grouped by the three work areas in the directive.</p>
+    <div class="qgroups">
+      <div class="qgroup">
+        <h3>Design</h3>
+        <ol>
+          <li><b>Who is "2 pros, 1 grow" about?</b><p>Is it the student reflecting on their own work, or a peer giving feedback on someone else's submission? Peer feedback needs reviewer assignment and very different screens.</p></li>
+          <li><b>Agreement scale or rubric levels?</b><p>"Likert-style" usually means Strongly disagree → Strongly agree. Rubric levels (Explore → Create) can be compared directly with teacher scores. Which matters more?</p></li>
+          <li><b>Are the 4 categories fixed?</b><p>Should every assignment use Technical Excellence, Communication, Work Habits and AI Orchestration, or can a course or teacher change them?</p></li>
+        </ol>
+      </div>
+      <div class="qgroup">
+        <h3>Coding</h3>
+        <ol start="4">
+          <li><b>Who sees the results, and do they affect grades?</b><p>Teacher only, the student's own history, peers, or a class summary? Is it purely reflective, or part of the score?</p></li>
+          <li><b>Required on every submission?</b><p>Required each time, once per assignment, or optional? What happens on a resubmission: a new survey, or edit the old one?</p></li>
+          <li><b>What reports do you want from the data?</b><p>For example, self-rating vs. teacher grade, trends across a sprint, or common "grow" themes. This decides how the data is stored.</p></li>
+        </ol>
+      </div>
+      <div class="qgroup">
+        <h3>Security / tamper</h3>
+        <ol start="7">
+          <li><b>Which tampering worries you most?</b><p>Changing answers after grading, submitting as another student, editing the grade through the API, or low-effort answers like all 5s and copy-pasted text?</p></li>
+          <li><b>Should answers be editable?</b><p>Locked at submit, editable until graded, or always editable with a visible change history?</p></li>
+          <li><b>Do we need to check for AI-written or copied reflections?</b><p>If so, a warning to the teacher is enough, or should the submission be blocked?</p></li>
+        </ol>
+      </div>
+    </div>
+  </section>
+</div>
+</div>
+
+<script>
+(function () {
+  const AGREE = ['Strongly disagree', 'Disagree', 'Neutral', 'Agree', 'Strongly agree'];
+  const BLOOM = ['Explore', 'Understand', 'Apply', 'Analyze / Evaluate', 'Create / Extend'];
+  const LEVEL = ['Beginning', 'Developing', 'Consistent', 'Strong', 'Model'];
+
+  const ITEMS = [
+    { key: 'technicalExcellence', name: 'Technical Excellence', rubric: BLOOM,
+      statement: 'I chose the right tools, solved the problems in this assignment, and grew technically.',
+      prompt: 'Rate the technical quality of your work on this assignment: your use of tools, problem-solving, and technical growth.' },
+    { key: 'communication', name: 'Communication', rubric: LEVEL,
+      statement: 'I explained my work clearly through documentation, comments, or conversations with others.',
+      prompt: 'Rate how clearly you communicated your work and process: explanations, documentation, and collaboration or help-seeking.' },
+    { key: 'workHabits', name: 'Work Habits', rubric: LEVEL,
+      statement: 'I managed my time, kept going when I was stuck, and finished what I committed to.',
+      prompt: 'Rate your work habits on this assignment: time management, persistence, responsibility, and follow-through.' },
+    { key: 'aiOrchestration', name: 'AI Orchestration', rubric: BLOOM,
+      statement: 'I used AI tools with purpose: I wrote clear prompts, checked the output, and built on it.',
+      prompt: 'Rate how effectively you used AI tools: prompting, verifying, extending, or speeding up your development.' }
+  ];
+
+  const QUAL = [
+    { key: 'selfAssessmentPro1', kind: 'pro', title: '+ Pro 1', prompt: 'Something that went well. Name a specific moment, file, or result.',
+      sample: 'I split the FRQ into helper methods first, so testing each part took minutes instead of an hour.' },
+    { key: 'selfAssessmentPro2', kind: 'pro', title: '+ Pro 2', prompt: 'A second strength, ideally from a different category.',
+      sample: '' },
+    { key: 'selfAssessmentGrow', kind: 'grow', title: '↑ Grow', prompt: 'One thing you will do differently next time, and how.',
+      sample: '' }
+  ];
+  const MIN = 20, MAX = 500;
+  let mode = 'agree';
+
+  const likertRoot = document.getElementById('likert-items');
+  const qualRoot = document.getElementById('qual-items');
+
+  function renderLikert() {
+    const picked = {};
+    ITEMS.forEach(it => {
+      const c = document.querySelector(`input[name="${it.key}"]:checked`);
+      if (c) picked[it.key] = c.value;
+    });
+    likertRoot.textContent = '';
+    ITEMS.forEach((it, idx) => {
+      const fs = document.createElement('fieldset');
+      fs.id = 'fs-' + it.key;
+      const lg = document.createElement('legend');
+      const cat = document.createElement('span'); cat.className = 'cat'; cat.textContent = it.name;
+      const st = document.createElement('span'); st.className = 'stmt';
+      st.textContent = mode === 'agree' ? it.statement : it.prompt;
+      lg.append(cat, st);
+      const row = document.createElement('div'); row.className = 'likert';
+      const labels = mode === 'agree' ? AGREE : it.rubric;
+      labels.forEach((text, i) => {
+        const v = String(i + 1);
+        const lab = document.createElement('label');
+        const inp = document.createElement('input');
+        inp.type = 'radio'; inp.name = it.key; inp.value = v; inp.id = `${it.key}-${v}`;
+        // Prefill the first two items so the prototype opens partly filled in.
+        if (picked[it.key] ? picked[it.key] === v : (idx === 0 && v === '4') || (idx === 1 && v === '3')) inp.checked = true;
+        const num = document.createElement('span'); num.className = 'num'; num.textContent = v;
+        const l = document.createElement('span'); l.className = 'lbl'; l.textContent = text;
+        lab.append(inp, num, l);
+        row.append(lab);
+      });
+      const err = document.createElement('p'); err.className = 'err'; err.hidden = true;
+      fs.append(lg, row, err);
+      likertRoot.append(fs);
+    });
+  }
+
+  function renderQual() {
+    QUAL.forEach(q => {
+      const card = document.createElement('div');
+      card.className = 'qcard ' + q.kind; card.id = 'card-' + q.key;
+      const head = document.createElement('div'); head.className = 'qhead';
+      const t = document.createElement('label'); t.className = 'qtitle'; t.htmlFor = q.key; t.textContent = q.title;
+      const p = document.createElement('span'); p.className = 'qprompt'; p.textContent = q.prompt;
+      head.append(t, p);
+      const ta = document.createElement('textarea');
+      ta.id = q.key; ta.maxLength = MAX; ta.value = q.sample;
+      ta.placeholder = q.kind === 'grow'
+        ? 'Example: I waited too long to test edge cases. Next sprint I will write the empty-list test first.'
+        : 'Example: My README walked a teammate through running the project in under five minutes.';
+      const foot = document.createElement('div'); foot.className = 'qfoot';
+      const relWrap = document.createElement('label');
+      relWrap.innerHTML = '<span class="mark" aria-hidden="true">4</span> Related to ';
+      relWrap.style.display = 'flex'; relWrap.style.alignItems = 'center'; relWrap.style.gap = '6px';
+      const sel = document.createElement('select'); sel.id = q.key + 'Category';
+      sel.append(new Option('(optional)', ''));
+      ITEMS.forEach(it => sel.append(new Option(it.name, it.key)));
+      if (q.sample) sel.value = 'technicalExcellence';
+      relWrap.append(sel);
+      const count = document.createElement('span'); count.className = 'count'; count.id = 'count-' + q.key;
+      foot.append(relWrap, count);
+      const err = document.createElement('p'); err.className = 'err'; err.hidden = true;
+      card.append(head, ta, foot, err);
+      qualRoot.append(card);
+      ta.addEventListener('input', update);
+    });
+  }
+
+  function textLen(key) { return document.getElementById(key).value.trim().length; }
+
+  function update() {
+    const rated = ITEMS.filter(it => document.querySelector(`input[name="${it.key}"]:checked`)).length;
+    const pros = ['selfAssessmentPro1', 'selfAssessmentPro2'].filter(k => textLen(k) >= MIN).length;
+    const grow = textLen('selfAssessmentGrow') >= MIN ? 1 : 0;
+    setChip('chip-ratings', `Ratings ${rated}/4`, rated === 4);
+    setChip('chip-pros', `Pros ${pros}/2`, pros === 2);
+    setChip('chip-grow', `Grow ${grow}/1`, grow === 1);
+    QUAL.forEach(q => {
+      const n = textLen(q.key);
+      const c = document.getElementById('count-' + q.key);
+      c.textContent = n < MIN ? `${n} / ${MAX} · ${MIN - n} more needed` : `${n} / ${MAX}`;
+      c.classList.toggle('ok', n >= MIN);
+    });
+  }
+  function setChip(id, text, done) {
+    const el = document.getElementById(id); el.textContent = text; el.classList.toggle('done', done);
+  }
+
+  function validate() {
+    const errors = [];
+    ITEMS.forEach(it => {
+      const fs = document.getElementById('fs-' + it.key);
+      const ok = !!document.querySelector(`input[name="${it.key}"]:checked`);
+      const err = fs.querySelector('.err');
+      fs.classList.toggle('has-error', !ok);
+      err.hidden = ok; err.textContent = ok ? '' : `Choose a rating for ${it.name}.`;
+      if (!ok) errors.push(it.name);
+    });
+    QUAL.forEach(q => {
+      const card = document.getElementById('card-' + q.key);
+      const n = textLen(q.key);
+      const ok = n >= MIN && n <= MAX;
+      const err = card.querySelector('.err');
+      card.classList.toggle('has-error', !ok);
+      err.hidden = ok;
+      err.textContent = ok ? '' : `Write at least ${MIN} characters so your teacher has something specific to read.`;
+      if (!ok) errors.push(q.title.replace(/^[+↑]\s*/, ''));
+    });
+    return errors;
+  }
+
+  function buildPayload() {
+    const payload = { assignmentId: 1234, content: { link: document.getElementById('sub-link').value } };
+    ITEMS.forEach(it => { payload[it.key] = Number(document.querySelector(`input[name="${it.key}"]:checked`).value); });
+    QUAL.forEach(q => {
+      payload[q.key] = document.getElementById(q.key).value.trim();
+      const cat = document.getElementById(q.key + 'Category').value;
+      payload[q.key + 'Category'] = cat || null;
+    });
+    payload.scale = mode === 'agree' ? 'agreement-5' : 'rubric-5';
+    return payload;
+  }
+
+  document.getElementById('sa-form').addEventListener('change', e => { if (e.target.type === 'radio') update(); });
+  document.getElementById('sa-form').addEventListener('submit', e => {
+    e.preventDefault();
+    const out = document.getElementById('result');
+    out.hidden = false; out.textContent = '';
+    const errors = validate();
+    if (errors.length) {
+      out.className = 'result bad';
+      const p = document.createElement('p');
+      p.textContent = `Finish ${errors.length} item${errors.length > 1 ? 's' : ''} before submitting: ${errors.join(', ')}.`;
+      out.append(p);
+      return;
+    }
+    out.className = 'result good';
+    const p = document.createElement('p');
+    p.innerHTML = '<span class="mark" aria-hidden="true">7</span> Prototype only, nothing was sent. The backend would receive:';
+    p.style.display = 'flex'; p.style.gap = '8px'; p.style.alignItems = 'center';
+    const pre = document.createElement('pre');
+    pre.textContent = JSON.stringify(buildPayload(), null, 2);
+    out.append(p, pre);
+  });
+
+  function setMode(m) {
+    mode = m;
+    document.getElementById('scale-agree').setAttribute('aria-pressed', m === 'agree');
+    document.getElementById('scale-rubric').setAttribute('aria-pressed', m === 'rubric');
+    renderLikert(); update();
+  }
+  document.getElementById('scale-agree').addEventListener('click', () => setMode('agree'));
+  document.getElementById('scale-rubric').addEventListener('click', () => setMode('rubric'));
+
+  renderLikert(); renderQual(); update();
+})();
+</script>
