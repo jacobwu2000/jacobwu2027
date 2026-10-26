@@ -146,3 +146,9 @@ public class GradebookManager {
 
 - **Initial Draft Feedback:** Peer noted that using an external `User` class added unnecessary setup overhead for a 15-minute concept lesson.
 - **Revision Implemented:** Replaced complex `User` class parameters with lightweight `String userRole` and `String userId` method arguments to keep focus strictly on **Unit 3 encapsulation** and **Unit 4 ArrayList processing**.
+
+---
+
+## 6. Completed Hacks
+
+My completed popcorn hack, MCQ, and homework hacks for the OCS version of this lesson are on the [Submission Roles Hacks]({{site.baseurl}}/sprint2/submission-roles/hacks) page.

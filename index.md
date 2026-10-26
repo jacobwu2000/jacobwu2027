@@ -295,6 +295,11 @@ Hi! My name is Jacob B Wu
            Submission Roles
         </div>
     </a>
+    <a href="{{site.baseurl}}/sprint2/submission-roles/hacks" style="text-decoration: none;">
+        <div style="background-color: var(--teal); color: black; padding: 10px 20px; border-radius: 5px; font-weight: bold; transition: transform 0.2s, box-shadow 0.2s;">
+           Submission Roles Hacks
+        </div>
+    </a>
 </div>
 
 ### OCS Submissions
